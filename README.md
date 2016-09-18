@@ -16,7 +16,15 @@ Nginx accordingly.
 Role Variables
 --------------
 
-TBD.
+    certbot_default_release: "{{ansible_distribution_release}}-backports"
+
+Default release for installing packages. Pre-configured to specify the
+backports repository for your Debian installation.
+
+    certbot_config_directory: "/etc/letsencrypt"
+
+Certbot configuration directory, where things like your account
+information live.
 
 Dependencies
 ------------

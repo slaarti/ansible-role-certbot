@@ -6,4 +6,20 @@
     update_cache: yes
     default_release: "{{ certbot_default_release }}"
 
+- name: Create Certbot configuration directory
+  file:
+    path: "{{ certbot_config_directory }}"
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+
+- name: Create Certbot accounts directory
+  file:
+    path: "{{ certbot_config_directory }}/accounts"
+    state: directory
+    owner: root
+    group: root
+    mode: 0700
+
 
