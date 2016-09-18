@@ -26,6 +26,13 @@ backports repository for your Debian installation.
 Certbot configuration directory, where things like your account
 information live.
 
+    certbot_server_url: ""
+
+The URL of the certbot server you want to register against to get your
+certificates. You will need to specify either the Let's Encrypt production
+or staging servers if you're going for real certs, or the Boulder CA
+server of your choice if you're doing some private testing or other work.
+
 Dependencies
 ------------
 

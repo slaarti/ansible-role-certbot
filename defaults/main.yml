@@ -1,3 +1,4 @@
 ---
 certbot_default_release: "{{ansible_distribution_release}}-backports"
 certbot_config_directory: "/etc/letsencrypt"
+certbot_server_url: ""

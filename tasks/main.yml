@@ -22,4 +22,11 @@
     group: root
     mode: 0700
 
-
+- name: Create account directory tree for server
+  file:
+    path: "{{ certbot_config_directory }}/accounts/{{ certbot_server_url|regex_replace('^https?://(.+)/?', '\\1') }}"
+    state: directory
+    owner: root
+    group: root
+    mode: 0700
+    recurse: yes
