@@ -1,0 +1,9 @@
+---
+- name: Install certbot package(s)
+  apt:
+    pkg: certbot
+    state: latest
+    update_cache: yes
+    default_release: "{{ certbot_default_release }}"
+
+
