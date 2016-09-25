@@ -31,3 +31,31 @@
     mode: 0700
     recurse: yes
   with_items: "{{ certbot_account_list }}"
+
+- name: Create account meta files
+  copy:
+    dest: "{{ certbot_config_directory }}/accounts/{{ item.server|regex_replace('^https?://(.+)/?', '\\1') }}/{{ item.account_id }}/meta.json"
+    owner: root
+    group: root
+    mode: 0644
+    content: "{{ item.meta }}"
+  with_items: "{{ certbot_account_list }}"
+
+- name: Create account private keys
+  copy:
+    dest: "{{ certbot_config_directory }}/accounts/{{ item.server|regex_replace('^https?://(.+)/?', '\\1') }}/{{ item.account_id }}/private_key.json"
+    owner: root
+    group: root
+    mode: 0600
+    content: "{{ item.privatekey }}"
+  with_items: "{{ certbot_account_list }}"
+
+- name: Create account registration files
+  copy:
+    dest: "{{ certbot_config_directory }}/accounts/{{ item.server|regex_replace('^https?://(.+)/?', '\\1') }}/{{ item.account_id }}/regr.json"
+    owner: root
+    group: root
+    mode: 0644
+    content: "{{ item.regr }}"
+  with_items: "{{ certbot_account_list }}"
+

@@ -32,8 +32,9 @@ A list of hashes containing configuration information on Let's Encrypt
 authentication servers and credentials. It is assumed that you've already
 installed `certbot` somewhere else and used `certbot register` to create
 your account and create the files whose information goes into this
-variable. Each account in this list has the following elements, each of
-which is required:
+variable. Because this includes private key information, you should use
+Ansible Vault to secure any file you put this variable in. Each account in
+this list has the following elements, each of which is required:
 
 *   `server`: The URL of the certbot server you want to register against
     to get your certificates. You will need to specify either the Let's
@@ -45,6 +46,12 @@ which is required:
     hex digest of some information derived from your account's public key.
     It is used in the directory path leading to where the keys and other
     information for this account are stored.
+
+*   `meta`, `privatekey`, and `regr`: The single-line JSON contents of the
+    meta, private key, and registration files for the account,
+    respectively. You should probably use `|` or `>` block literal
+    notation for these elements, to save on having to otherwise escape any
+    of the quotations in the files.
 
 Dependencies
 ------------
