@@ -29,14 +29,22 @@ information live.
     certbot_account_list: []
 
 A list of hashes containing configuration information on Let's Encrypt
-authentication servers and credentials. Each account in this list has the
-following elements, each of which is required:
+authentication servers and credentials. It is assumed that you've already
+installed `certbot` somewhere else and used `certbot register` to create
+your account and create the files whose information goes into this
+variable. Each account in this list has the following elements, each of
+which is required:
 
 *   `server`: The URL of the certbot server you want to register against
     to get your certificates. You will need to specify either the Let's
     Encrypt production or staging servers if you're going for real certs,
     or the Boulder CA server of your choice if you're doing some private
     testing or other work.
+
+*   `account_id`: The ID for your account on this server. It's an MD5 hash
+    hex digest of some information derived from your account's public key.
+    It is used in the directory path leading to where the keys and other
+    information for this account are stored.
 
 Dependencies
 ------------
