@@ -59,3 +59,16 @@
     content: "{{ item.regr }}"
   with_items: "{{ certbot_account_list }}"
 
+- name: Remove certbot crontab from package
+  file:
+    path: "/etc/cron.d/certbot"
+    state: absent
+
+- name: Add certbot cron job that also restarts nginx
+  cron:
+    name: "certbot renewal"
+    job: "/usr/bin/test -x /usr/bin/certbot && /usr/bin/perl -e 'sleep int(rand(3600))' && /usr/bin/certbot -q renew && /etc/init.d/nginx reload"
+    user: root
+    minute: "0"
+    hour: "*/12"
+
