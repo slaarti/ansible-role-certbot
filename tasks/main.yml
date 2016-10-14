@@ -59,6 +59,14 @@
     content: "{{ item.regr }}"
   with_items: "{{ certbot_account_list }}"
 
+- name: Ask certbot for its version
+  command: /usr/bin/certbot --version
+  register: certbot_vcommand
+
+- name: Set fact for certbot version number
+  set_fact:
+    certbot_version: "{{ certbot_vcommand | replace('certbot ', '') | trim }}"
+
 - name: Remove certbot crontab from package
   file:
     path: "/etc/cron.d/certbot"
