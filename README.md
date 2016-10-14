@@ -11,7 +11,11 @@ Debian distribution.
 
 It assumes that you'll be using [Nginx](http://nginx.org/) as your web
 server, and will have the `cron` job that renews your certificates restart
-Nginx accordingly.
+Nginx accordingly. First, however, it will have Certbot use its standalone
+web server to get the initial certificates for all of your domains, then
+rewrite the renewal configuration files to use webroot authentication
+instead. You should, therefore, use this role before whatever roles you
+use to manage Nginx.
 
 Role Variables
 --------------
