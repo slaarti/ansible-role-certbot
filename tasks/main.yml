@@ -65,7 +65,7 @@
 
 - name: Set fact for certbot version number
   set_fact:
-    certbot_version: "{{ certbot_vcommand | replace('certbot ', '') | trim }}"
+    certbot_version: "{{ certbot_vcommand.stderr | replace('certbot ', '') | trim }}"
 
 - name: Do standalone registration to get initial certs
   command: /usr/bin/certbot certonly --standalone -t --agree-tos --server "{{ item.0.server }}" --email "{{ item.0.email }}" --domain "{{ item.1.name }}"
