@@ -67,6 +67,14 @@
   set_fact:
     certbot_version: "{{ certbot_vcommand | replace('certbot ', '') | trim }}"
 
+- name: Do standalone registration to get initial certs
+  command: /usr/bin/certbot certonly --standalone -t --agree-tos --server "{{ item.0.server }}" --email "{{ item.0.email }}" --domain "{{ item.1 }}"
+  args:
+    creates: "{{ certbot_config_directory }}/live/{{ item.1 }}/fullchain.pem"
+  with_subelements:
+    - "{{ certbot_account_list }}"
+    - domains
+
 - name: Remove certbot crontab from package
   file:
     path: "/etc/cron.d/certbot"

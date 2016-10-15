@@ -57,6 +57,13 @@ this list has the following elements, each of which is required:
     notation for these elements, to save on having to otherwise escape any
     of the quotations in the files.
 
+*   `email`: The email address you registered the account with.
+
+*   `domains`: A list of domains to register certificates for. Each domain
+    listed gets a certificate requested for it individually; support for
+    alternate names is not currently included, although it may be added in
+    the future depending on the author's requirements.
+
 Dependencies
 ------------
 
