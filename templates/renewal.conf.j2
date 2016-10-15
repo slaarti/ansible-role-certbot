@@ -1,0 +1,16 @@
+# renew_before_expiry = 30 days
+version = {{ certbot_version }}
+cert = {{ certbot_config_directory }}/live/{{ item.1.name }}/cert.pem
+privkey = {{ certbot_config_directory }}/live/{{ item.1.name }}/privkey.pem
+chain = {{ certbot_config_directory }}/live/{{ item.1.name }}/chain.pem
+fullchain = {{ certbot_config_directory }}/live/{{ item.1.name }}/fullchain.pem
+
+# Options used in the renewal process
+[renewalparams]
+account = {{ item.0.account_id }}
+server = {{ item.0.server }}
+authenticator = webroot
+installer = None
+webroot_path = {{ item.1.webroot }},
+[[webroot_map]]
+{{ item.1.name }} = {{ item.1.webroot }}

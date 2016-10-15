@@ -75,6 +75,17 @@
     - "{{ certbot_account_list }}"
     - domains
 
+- name: Rewrite certificate renewal configuration.
+  template:
+    src: renewal.conf.j2
+    dest: "{{ certbot_config_directory }}/renewal/{{ item.1.name }}.conf"
+    owner: root
+    group: root
+    mode: 0755
+  with_subelements:
+    - "{{ certbot_account_list }}"
+    - domains
+
 - name: Remove certbot crontab from package
   file:
     path: "/etc/cron.d/certbot"
