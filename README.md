@@ -62,7 +62,14 @@ this list has the following elements, each of which is required:
 *   `domains`: A list of domains to register certificates for. Each domain
     listed gets a certificate requested for it individually; support for
     alternate names is not currently included, although it may be added in
-    the future depending on the author's requirements.
+    the future depending on the author's requirements. This element has
+    subelements:
+
+    *   `name`: The FQDN of the name to register.
+
+    *   `webroot`: The root directory for the site, or at least the
+        directory in which the `.well-known` directory that Certbot will
+        use for webroot authentication can be found.
 
 Dependencies
 ------------

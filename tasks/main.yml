@@ -68,9 +68,9 @@
     certbot_version: "{{ certbot_vcommand | replace('certbot ', '') | trim }}"
 
 - name: Do standalone registration to get initial certs
-  command: /usr/bin/certbot certonly --standalone -t --agree-tos --server "{{ item.0.server }}" --email "{{ item.0.email }}" --domain "{{ item.1 }}"
+  command: /usr/bin/certbot certonly --standalone -t --agree-tos --server "{{ item.0.server }}" --email "{{ item.0.email }}" --domain "{{ item.1.name }}"
   args:
-    creates: "{{ certbot_config_directory }}/live/{{ item.1 }}/fullchain.pem"
+    creates: "{{ certbot_config_directory }}/live/{{ item.1.name }}/fullchain.pem"
   with_subelements:
     - "{{ certbot_account_list }}"
     - domains
