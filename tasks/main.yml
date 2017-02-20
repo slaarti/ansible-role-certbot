@@ -91,6 +91,13 @@
     path: "/etc/cron.d/certbot"
     state: absent
 
+- name: Disable sending mail for certbot cron job
+  cron:
+    name: "MAILTO"
+    env: yes
+    value: ""
+    cron_file: "certbot-nginx"
+
 - name: Add certbot cron job that also restarts nginx
   cron:
     name: "certbot renewal"
@@ -98,4 +105,5 @@
     user: root
     minute: "0"
     hour: "*/12"
+    cron_file: "certbot-nginx"
 
