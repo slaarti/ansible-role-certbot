@@ -96,6 +96,7 @@
     name: "MAILTO"
     env: yes
     value: ""
+    user: root
     cron_file: "certbot-nginx"
 
 - name: Add certbot cron job that also restarts nginx
